@@ -14,7 +14,7 @@ public class ReverseNode {
         }
     }
 
-    public Node reverse() {
+    public void reverse() {
         Node prev = null;
         Node current = head;
         Node next = null;
@@ -25,7 +25,6 @@ public class ReverseNode {
             current = next;
         }
         head = prev;
-        return head;
     }
 
     public void printNode(Node node) {
@@ -54,9 +53,9 @@ public class ReverseNode {
 
         System.out.println("Односвязный список");
         list.printNode(head);
-        head = list.reverse();
+        list.reverse();
         System.out.println("");
-        System.out.println("Перевернутый односвязный список ");
+        System.out.println("Перевернутый односвязный список");
         list.printNode(head);
         System.out.println();
     }

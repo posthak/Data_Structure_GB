@@ -3,15 +3,29 @@ package HomeWork3;
 public class ReverseNode {
 
     static Node head;
+    static Node tail;
 
     private static class Node {
         private int value;
         private Node next;
+        private Node prev;
 
         public Node(int value) {
             this.value = value;
             this.next = null;
+            this.prev = null;
         }
+    }
+
+    public boolean contains(int value) {
+        Node node = head;
+        while (node != null) {
+            if (node.value == value) {
+                return true;
+            }
+            node = node.next;
+        }
+        return false;
     }
 
     public void reverse() {
@@ -35,6 +49,21 @@ public class ReverseNode {
         }
     }
 
+    // Добавление многосвязанного списка
+    public void addFirstMul(int value) {
+        Node node = new Node(value);
+        // node.value = value;
+        if (head == null) {
+            head = node;
+            tail = node;
+        } else {
+            tail.next = node;
+            node.prev = tail;
+            tail = node;
+        }
+    }
+
+    // Добавление односвязанного списка
     public void addFirst(int value) {
         Node node = new Node(value);
         if (head != null) {
@@ -43,13 +72,22 @@ public class ReverseNode {
         head = node;
     }
 
+    public void removeLast() {
+        if (tail != null && tail.prev != null) {
+            tail.prev.next = null;
+            tail = tail.prev;
+        } else {
+            head = null;
+            tail = null;
+        }
+    }
+
     public static void main(String[] args) {
         System.out.println("Hello world!");
         ReverseNode list = new ReverseNode();
-        list.addFirst(1);
-        list.addFirst(2);
-        list.addFirst(3);
-        list.addFirst(4);
+        list.addFirstMul(1);
+        list.addFirstMul(9);
+        list.addFirstMul(11);
 
         System.out.println("Односвязный список");
         list.printNode(head);
